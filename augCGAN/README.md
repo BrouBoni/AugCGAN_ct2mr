@@ -15,7 +15,7 @@ with cropped images by using the option `--crop`. This option only works with PN
  
 `python train.py --dataroot ../datasets/ct2mr_256/ --name model_256/ --loadSize 256 --crop  `
 
-### Fine-tuning/resume trainingS
+### Fine-tuning/resume training
 
 To fine-tune a pre-trained model, or resume the previous training, use the 
 option `--continue_train` and `--load_pretrain checkpoints/model_256/`

@@ -479,10 +479,15 @@ class AugmentedCycleGAN(object):
         # NOTE: The generator and encoder ALI loss is computed using the new (updated)
         # discriminator parameters.
         pred_fake_A = self.netD_A.forward(fake_A)
-        loss_G_A = self.criterionGAN(pred_fake_A[0][0], True)
-
         pred_fake_B = self.netD_B.forward(fake_B)
-        loss_G_B = self.criterionGAN(pred_fake_B[0][0], True)
+        
+        loss_G_A = 0
+        loss_G_B = 0
+        
+        #number of discriminator(s) = 2
+        for k in range(2):
+            loss_G_A += self.criterionGAN(pred_fake_A[k][0], True)
+            loss_G_B += self.criterionGAN(pred_fake_B[k][0], True)
 
         pred_post_z_B = self.netD_z_B.forward(post_z_realB)
         loss_G_z_B = self.criterionGAN(pred_post_z_B, True)
